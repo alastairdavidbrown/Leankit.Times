@@ -1,25 +1,23 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var leankit = require("leankit-client");
 var config = require('./config/config');
-var accountName = "tlrg";
-var email = "joseph.ryan@laterooms.com";
-var password = "password12";
-var client = leankit.createClient(config.accountName, config.email, config.password);
-var featureCards = require('./middleware/featureCards')(config, client);
+
+var leanKitLogin = require('./middleware/leanKitLogin');
+var featureCards = require('./middleware/featureCards')(config, leanKitLogin);
 var splitSizes = require('./middleware/splitSizes')();
-var cardTimes = require('./middleware/cardTimes')(config, client);
-var lastTimeDone = require('./middleware/lastTimeDone')(config, client);
+var cardTimes = require('./middleware/cardTimes')(config, leanKitLogin);
+var lastTimeDone = require('./middleware/lastTimeDone')(config, leanKitLogin);
 var groupByWeek = require('./middleware/groupByWeek')();
 var averageSizes = require('./middleware/averageSizes')();
 var removeZeroSizes = require('./middleware/removeZeroSizes')();
 
-var routes = require('./routes/index')(featureCards, splitSizes, cardTimes, lastTimeDone, groupByWeek, averageSizes, removeZeroSizes);
+var routes = require('./routes/index')(leanKitLogin, featureCards, splitSizes, cardTimes, lastTimeDone, groupByWeek, averageSizes, removeZeroSizes);
 
 var app = express();
 
@@ -27,7 +25,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());

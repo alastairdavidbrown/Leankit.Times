@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
-module.exports = function createFeatureParser(config, client) {
+module.exports = function createFeatureParser(config, leanKitLogin) {
 
     return function storeFeatures(req, res, next) {
-        client.getBoardArchiveCards(config.boardId, function (err, archive) {
+        leanKitLogin.getClient().getBoardArchiveCards(config.boardId, function (err, archive) {
             if (err) {
                 console.log(err);
                 return next(err)

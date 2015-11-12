@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include head-frag %>
+    <meta name="Moonshine Select" content="Moonshine Select Board">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Boards...<small>...follow the board link to choose lanes </small></h1>
+        </div>
+        <table class="table table-stripped">
+            <% for (i = 0; i < boards.length; i++ ) { %>
+                <tr>
+                    <td>
+                        <a id="<%=i%>" href="/leankit-set-ft-lane/<%=boards[i].Id%>"><%= boards[i].Title%></a>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+
+    </script>
+
+    <% include bootstrap-frag %>
+
+</body>

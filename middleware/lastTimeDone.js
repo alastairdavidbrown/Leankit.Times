@@ -1,12 +1,12 @@
 var _ = require('lodash');
 var moment = require('moment')
 
-module.exports = function create(config, client) {
+module.exports = function create(config, leanKitLogin) {
     return function (req, res, next) {
         var called = 0;
         var numberOfCards = req.features.length;
         _.forEach(req.features, function (feature) {
-            client.getCardHistory(config.boardId, feature.Id, function (err, data) {
+            leanKitLogin.getClient().getCardHistory(config.boardId, feature.Id, function (err, data) {
                 called++;
                 if (err) {
                     console.log('err', err)

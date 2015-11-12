@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include head-frag %>
+    <meta name="Login" content="Moonshine Login Page">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form id="login" class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend class="text-center header">Login to Leankit.com</legend>
+
+                            <div id="fg-accountName" class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center">
+                                    <i class="fa fa-user bigicon"></i>
+                                </span>
+                                <div class="col-md-8">
+                                    <input id="accountName" name="accountName" type="text" 
+                                           value="tlrg"
+                                           placeholder="Account name(tlrg)" class="form-control"> 
+                                </div>
+                            </div>
+                            <div id="fg-email" class="form-group ">
+                                <span class="col-md-1 col-md-offset-2 text-center">
+                                    <i class="fa fa-user bigicon"></i>
+                                </span>
+                                <div class="col-md-8">
+                                    <input  id="email" name="email" type="text" 
+                                            value="alastair.brown@laterooms.com"
+                                            placeholder="Email address" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div id="fg-password" class="form-group ">
+                                <span class="col-md-1 col-md-offset-2 text-center">
+                                    <i class="fa fa-user bigicon"></i>
+                                </span>
+                                <div class="col-md-8">
+                                    <input  id="password" name="password" type="password" 
+                                            placeholder="Password" class="form-control" required>
+                                </div>
+                            </div>                           
+                           
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                            </div>
+						</fieldset>
+                    </form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <% include bootstrap-frag %>
+
+</body>

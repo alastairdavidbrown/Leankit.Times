@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include head-frag %>
+      <script>
+        function getLaneTitle(id, lanes[]){
+            for (i = 0; i < lanes.length(); i++){
+                if (lanes[i].Id == id)
+                    return lanes.Title
+            }
+            return null;
+        }
+    </script>
+
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Lanes...<small>follow the from and too link link to choose lanes </small></h1>
+        </div>
+        
+
+        <form id="SelectFTLanes" class="form-horizontal" method="post">
+            <button type="submit" class="btn btn-primary">Times...</button>
+
+            <input id="boardId" name="boardId" type="text" class="hidden" value="<%=boardId%>">
+            <table class="table table-stripped">
+                <tr>
+                    <td>
+                        <input id="fromLane" name="fromLane" type="text" 
+                                <% if (typeof(fromLane) !== "undefined" ) { %>
+                                value="<%=fromLane%>"
+                                <%}%>
+                                placeholder="From Lane" class="form-control"> 
+
+                                
+                    </td>
+                    <td>
+                        <input id="toLane" name="toLane" type="text" 
+                                <% if (typeof(toLane) !== "undefined" ) { %>
+                                value="<%=toLane%>"
+                                <%}%>
+                                placeholder="To Lane" class="form-control"> 
+                    </td>
+                </tr>
+            <% for (i = 0; i < lanes.length; i++ ) { %>
+                <tr>
+                    <td>
+                        <a id="<%=i%>" href="/leankit-set-ft-lane/<%=boardId%>/<%=lanes[i].fqTitle%>/<%=toLane%>"><%=lanes[i].fqTitle%></a>
+                    </td>
+                    <td>
+                        <a id="<%=i%>" href="/leankit-set-ft-lane/<%=boardId%>/<%=fromLane%>/<%=lanes[i].fqTitle%>"><%= lanes[i].fqTitle%></a>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+        </form>
+        
+        
+        
+    </div>
+
+    <% include bootstrap-frag %>
+    
+  
+</body>

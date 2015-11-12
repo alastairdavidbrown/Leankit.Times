@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var moment = require('moment')
 
-module.exports = function createCardTimer(config, client) {
+module.exports = function createCardTimer(config, leanKitLogin) {
 
     function getWeekdaysBetween(start, end) {
         var initial = moment(start);
@@ -26,7 +26,7 @@ module.exports = function createCardTimer(config, client) {
             if (key === '0') return;
             var sizes = req.sizes[key];
             _.forEach(sizes, function (size, i) {
-                client.getCardHistory(config.boardId, size.Id, function (err, data) {
+                leanKitLogin.getClient().getCardHistory(config.boardId, size.Id, function (err, data) {
                     called++;
                     if (err) {
                         console.log('err', err)
